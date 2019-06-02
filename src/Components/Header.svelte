@@ -23,8 +23,6 @@
 
   const changeMode = mode => dispatch('viewUpdate', { mode });
 
-  console.log(value);
-
   const handleKeyup = ({ key }) => {
     if (settingsOpen && key === 'Escape') {
       settingsOpen = false;
@@ -182,8 +180,8 @@
   {/if}
   {#if selection}
     <div class="mode" on:click={() => changeMode(0)}>Selection</div>
-    <div class="mode" on:click={() => (settingsOpen = true)}>Settings</div>
   {/if}
+  <div class="mode" on:click={() => (settingsOpen = true)}>Settings</div>
 </div>
 <div>
   {#if settingsOpen}

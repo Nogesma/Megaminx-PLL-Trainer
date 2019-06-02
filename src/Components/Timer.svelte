@@ -105,5 +105,5 @@
   on:touchstart={() => down({ code: 'Space' })}
   on:touchend={() => up({ code: 'Space' })}
   style="font-size:{timerSize}px">
-   {timerText}
+  {timerText}
 </div>

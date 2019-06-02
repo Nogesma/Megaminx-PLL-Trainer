@@ -15,33 +15,30 @@ td.svelte-b9nydz {
   border-spacing: 100px;
   text-align: center;
 }
-table.svelte-1nht9bi {
+table.svelte-1f6r51t {
   width: 100%;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
-td.svelte-1nht9bi {
+td.svelte-1f6r51t {
   cursor: pointer;
   border-radius: 5px;
   border-spacing: 100px;
   text-align: center;
 }
-th.svelte-1nht9bi {
+th.svelte-1f6r51t {
   cursor: pointer;
   border: 1px solid black;
   border-radius: 5px;
   border-spacing: 100px;
   text-align: center;
 }
-img.svelte-1nht9bi {
-  width: 70%;
-}
-.selected.svelte-1nht9bi {
+.selected.svelte-1f6r51t {
   border: 1px solid black;
 }
-.notSelected.svelte-1nht9bi {
+.notSelected.svelte-1f6r51t {
   border: 1px solid lightgrey;
 }
 .svelte-1mzek0z {

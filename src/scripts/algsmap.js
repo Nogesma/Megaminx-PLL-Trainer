@@ -1,6 +1,5 @@
 // Cases done : 1-30
-
-module.exports.megaPllMap = [
+const megaPllMap = [
   [
     "R U R2' U2' R U2 R U R' U2 R' U2' R2 U2' R'",
     "R U R' U2 R2' U' R2 U' R U R2 U R2' U2 R'",
@@ -22,7 +21,7 @@ module.exports.megaPllMap = [
     "R' U2' R U' R2' U2' R2 U' R2' U2' R2 U' R' U2' R",
     "R' U R2 U2' R U2 R2 U' R U R2 U2' R' U2 R'",
     "R' U2 R2 U2 R U2' R2 U2' R U R2 U2' R' U2 R'",
-    "R2' U2' R2' U2' R2' U2 R' U R U2 R2 U2' R2 U R2",
+    "R2' U2' R2' U2' R2' U2 R' U R U2  R2 U2' R2 U R2",
     "R' U2 R2' U R2 U R U' R2 U' R2' U2 R' U R",
     "R' U2' R2 U2' R' U2 R' U R U2 R U2' R2' U R",
     "R U2' R2' U2' R' U2 R2' U2' R2' U R2 U2' R2 U2 R U2' R",
@@ -9926,3 +9925,5 @@ module.exports.megaPllMap = [
     "R' U' R' U' R2 U' R U2 R2 U R2' U2 R2 U2' R2 U R' U R",
   ],
 ];
+
+export { megaPllMap };

@@ -1,4 +1,5 @@
 <script>
+  import { drawMegaminxLL } from '../scripts/minx-ll';
   import * as R from 'ramda';
   import { createEventDispatcher } from 'svelte';
 
@@ -7,7 +8,17 @@
 
   const dispatch = createEventDispatcher();
 
-  export let selectedCases = [];
+  export let selectedCases;
+  export let value;
+
+  $: colorScheme = R.nth(2, value) || {
+    U: 'Black',
+    R: 'Grey',
+    F: 'Yellow',
+    L: 'Orange',
+    Bl: 'LightBlue',
+    Br: 'Green',
+  };
 
   const changeMode = event =>
     dispatch('viewUpdate', {
@@ -15,10 +26,35 @@
       selectedCases,
     });
 
-  const getImage = i => ({
-    src: R.join('', ['./img/mega/', R.path([i, 'name'], algInfo), '.png']),
-    alt: R.path([i, 'name'], algInfo),
-  });
+  const getImage = (i, cs) =>
+    drawMegaminxLL(cs, [
+      0,
+      0,
+      4,
+      0,
+      5,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      3,
+      3,
+      0,
+      4,
+      4,
+      0,
+      1,
+      2,
+      2,
+      3,
+      5,
+      5,
+    ]);
 
   const selectAllNone = () =>
     R.equals(0, R.length(selectedCases))
@@ -35,6 +71,11 @@
           R.path([i, 'cases'], algGroup),
           selectedCases
         ));
+
+  const select = i =>
+    R.includes(i, selectedCases)
+      ? (selectedCases = R.without([i], selectedCases))
+      : (selectedCases = R.append(i, selectedCases));
 </script>
 
 <style>
@@ -54,6 +95,11 @@
     border-radius: 5px;
     border-spacing: 100px;
     text-align: center;
+  }
+  svg {
+    display: block;
+    max-height: 100%;
+    margin: auto;
   }
   th {
     cursor: pointer;
@@ -76,7 +122,8 @@
 <Header
   train={R.length(selectedCases)}
   selection={false}
-  on:viewUpdate={changeMode} />
+  on:viewUpdate={changeMode}
+  bind:value />
 
 <table>
   <th colspan="8" on:click={selectAllNone}>
@@ -91,27 +138,13 @@
       {#if R.includes(index, [8, 23, 34, 42, 53])}
         <tr />
       {/if}
-      {#if R.includes(index, selectedCases)}
-        <td
-          on:click={() => {
-            selectedCases = R.without([index], selectedCases);
-          }}
-          class="selected">
-          <img {...getImage(index)} />
-          <br />
-           {R.path([index, 'name'], algInfo)}
-        </td>
-      {:else}
-        <td
-          on:click={() => {
-            selectedCases = R.append(index, selectedCases);
-          }}
-          class="notSelected">
-          <img {...getImage(index)} />
-          <br />
-           {R.path([index, 'name'], algInfo)}
-        </td>
-      {/if}
+      <td
+        class={R.includes(index, selectedCases) ? 'selected' : 'notSelected'}
+        on:click={() => select(index)}>
+        {@html getImage(index, colorScheme)}
+        <br />
+        {R.path([index, 'name'], algInfo)}
+      </td>
     {/each}
   {/each}
 </table>

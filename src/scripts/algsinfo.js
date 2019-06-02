@@ -340,4 +340,4 @@ const algInfo = [
   },
 ];
 
-module.exports = { algGroup, algInfo };
+export { algGroup, algInfo };

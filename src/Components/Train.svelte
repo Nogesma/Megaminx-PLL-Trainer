@@ -10,12 +10,11 @@
   const changeMode = event =>
     dispatch('viewUpdate', {
       mode: R.path(['detail', 'mode'], event),
-      selectedCases,
+      selectedCases: selectedCases || [],
     });
 
-  export let selectedCases = [];
-
-  let value = [50, 30];
+  export let selectedCases;
+  export let value;
 
   $: scrambleSize = R.nth(1, value) || 30;
 
@@ -51,8 +50,9 @@
     selectedCases = R.without([R.path([0, 'caseIndex'], times)], selectedCases);
     if (R.equals(0, R.length(selectedCases))) {
       changeMode({ detail: { mode: 0 } });
+    } else {
+      [scramble, caseName] = getScrambleCase();
     }
-    [scramble, caseName] = getScrambleCase();
   };
 
   let [scramble, caseName] = getScrambleCase();
@@ -85,14 +85,7 @@
 
 <Header train={false} selection={true} on:viewUpdate={changeMode} bind:value />
 
-<div
-  on:click={() => {
-    [scramble, caseName] = getScrambleCase();
-  }}
-  class="scramble"
-  style="font-size:{scrambleSize}px">
-   {scramble}
-</div>
+<div class="scramble" style="font-size:{scrambleSize}px">{scramble}</div>
 <div>{caseName}</div>
 
 <Timer
