@@ -11,14 +11,7 @@
   export let selectedCases;
   export let value;
 
-  $: colorScheme = R.nth(2, value) || {
-    U: 'Black',
-    R: 'Grey',
-    F: 'Yellow',
-    L: 'Orange',
-    Bl: 'LightBlue',
-    Br: 'Green',
-  };
+  $: colorScheme = R.nth(2, value);
 
   const changeMode = event =>
     dispatch('viewUpdate', {
@@ -26,51 +19,22 @@
       selectedCases,
     });
 
-  const getImage = (i, cs) =>
-    drawMegaminxLL(cs, [
-      0,
-      0,
-      4,
-      0,
-      5,
-      0,
-      2,
-      0,
-      0,
-      0,
-      0,
-      1,
-      1,
-      0,
-      3,
-      3,
-      0,
-      4,
-      4,
-      0,
-      1,
-      2,
-      2,
-      3,
-      5,
-      5,
-    ]);
+  const getImage = (cs, state) => drawMegaminxLL(cs, state || R.repeat(0, 27));
 
   const selectAllNone = () =>
     R.equals(0, R.length(selectedCases))
       ? (selectedCases = R.range(0, R.length(algInfo)))
       : (selectedCases = []);
 
-  const selectGroup = i =>
-    R.equals(R.difference(selectedCases, algGroup[i].cases), selectedCases)
-      ? (selectedCases = R.concat(
-          R.path([i, 'cases'], algGroup),
-          selectedCases
-        ))
-      : (selectedCases = R.without(
-          R.path([i, 'cases'], algGroup),
-          selectedCases
-        ));
+  const selectGroup = i => {
+    const groupCases = R.path([i, 'cases'], algGroup);
+
+    if (R.equals(R.difference(selectedCases, groupCases), selectedCases)) {
+      selectedCases = R.concat(groupCases, selectedCases);
+    } else {
+      selectedCases = R.without(groupCases, selectedCases);
+    }
+  };
 
   const select = i =>
     R.includes(i, selectedCases)
@@ -141,7 +105,7 @@
       <td
         class={R.includes(index, selectedCases) ? 'selected' : 'notSelected'}
         on:click={() => select(index)}>
-        {@html getImage(index, colorScheme)}
+        {@html getImage(colorScheme, R.path([index, 'state'], algInfo))}
         <br />
         {R.path([index, 'name'], algInfo)}
       </td>
