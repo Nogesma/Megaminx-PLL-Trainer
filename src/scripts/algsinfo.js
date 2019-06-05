@@ -42,8 +42,6 @@ const algGroup = [
 const algInfo = [
   {
     name: 'A1+',
-    a: "(R' BR' R BR) (R' F' R BR') (R' BR F R)",
-    a2: "F' R' F R U' R' F' R2 U R' U' R' F R",
     state: [
       0,
       0,
@@ -75,8 +73,6 @@ const algInfo = [
   },
   {
     name: 'A1-',
-    a: "(R' F' BR' R) (BR R' F R) (BR' R' BR R)",
-    a2: "R' F' R U R U' R2' F R U R' F' R F",
     state: [
       0,
       0,
@@ -108,8 +104,6 @@ const algInfo = [
   },
   {
     name: 'A2+',
-    a: "BR' (R' U L U') (R' U L' U') R2 BR",
-    a2: '',
     state: [
       0,
       0,
@@ -141,8 +135,6 @@ const algInfo = [
   },
   {
     name: 'A2-',
-    a: "BR' R2' (U L U' R) (U L' U' R) BR",
-    a2: '',
     state: [
       0,
       0,
@@ -174,8 +166,6 @@ const algInfo = [
   },
   {
     name: 'E1',
-    a: "R' U' R' D' R U' R' D R U R' D' R U R' D R2",
-    a2: "R U R' U R' U' R F' R U R' U' R' F R2 U' R2' U R",
     state: [
       0,
       0,
@@ -207,8 +197,6 @@ const algInfo = [
   },
   {
     name: 'E2',
-    a: "R2 U R' y (R U' R' U)3 y' R U' R2'",
-    a2: '',
     state: [
       0,
       0,
@@ -240,8 +228,6 @@ const algInfo = [
   },
   {
     name: 'E3',
-    a: "L' R U R' (U R U' R')2 U R U2' R' L",
-    a2: '',
     state: [
       0,
       0,
@@ -273,8 +259,6 @@ const algInfo = [
   },
   {
     name: 'K1+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -306,8 +290,6 @@ const algInfo = [
   },
   {
     name: 'K1-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -339,8 +321,6 @@ const algInfo = [
   },
   {
     name: 'K2+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -372,8 +352,6 @@ const algInfo = [
   },
   {
     name: 'K2-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -405,8 +383,6 @@ const algInfo = [
   },
   {
     name: 'H1+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -438,8 +414,6 @@ const algInfo = [
   },
   {
     name: 'H1-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -471,8 +445,6 @@ const algInfo = [
   },
   {
     name: 'H2+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -504,8 +476,6 @@ const algInfo = [
   },
   {
     name: 'H2-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -537,8 +507,6 @@ const algInfo = [
   },
   {
     name: 'Q1+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -570,8 +538,6 @@ const algInfo = [
   },
   {
     name: 'Q1-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -603,8 +569,6 @@ const algInfo = [
   },
   {
     name: 'Q2+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -636,8 +600,6 @@ const algInfo = [
   },
   {
     name: 'Q2-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -669,8 +631,6 @@ const algInfo = [
   },
   {
     name: 'U1+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -702,8 +662,6 @@ const algInfo = [
   },
   {
     name: 'U1-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -735,8 +693,6 @@ const algInfo = [
   },
   {
     name: 'U2+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -768,8 +724,6 @@ const algInfo = [
   },
   {
     name: 'U2-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -801,8 +755,6 @@ const algInfo = [
   },
   {
     name: 'Z1',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -834,8 +786,6 @@ const algInfo = [
   },
   {
     name: 'Z2',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -867,8 +817,6 @@ const algInfo = [
   },
   {
     name: 'Z3',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -900,8 +848,6 @@ const algInfo = [
   },
   {
     name: 'D+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -933,8 +879,6 @@ const algInfo = [
   },
   {
     name: 'D-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -966,8 +910,6 @@ const algInfo = [
   },
   {
     name: 'F1+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -999,8 +941,6 @@ const algInfo = [
   },
   {
     name: 'F1-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1032,8 +972,6 @@ const algInfo = [
   },
   {
     name: 'F2+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1065,8 +1003,6 @@ const algInfo = [
   },
   {
     name: 'F2-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1098,8 +1034,6 @@ const algInfo = [
   },
   {
     name: 'F3+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1131,8 +1065,6 @@ const algInfo = [
   },
   {
     name: 'F3-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1164,8 +1096,6 @@ const algInfo = [
   },
   {
     name: 'F4+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1197,8 +1127,6 @@ const algInfo = [
   },
   {
     name: 'F4-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1230,8 +1158,6 @@ const algInfo = [
   },
   {
     name: 'F5+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1263,8 +1189,6 @@ const algInfo = [
   },
   {
     name: 'F5-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1296,8 +1220,6 @@ const algInfo = [
   },
   {
     name: 'J1+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1329,8 +1251,6 @@ const algInfo = [
   },
   {
     name: 'J1-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1362,8 +1282,6 @@ const algInfo = [
   },
   {
     name: 'J2+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1395,8 +1313,6 @@ const algInfo = [
   },
   {
     name: 'J2-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1428,8 +1344,6 @@ const algInfo = [
   },
   {
     name: 'J3+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1461,8 +1375,6 @@ const algInfo = [
   },
   {
     name: 'J3-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1494,8 +1406,6 @@ const algInfo = [
   },
   {
     name: 'M',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1527,8 +1437,6 @@ const algInfo = [
   },
   {
     name: 'V1+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1560,8 +1468,6 @@ const algInfo = [
   },
   {
     name: 'V1-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1593,8 +1499,6 @@ const algInfo = [
   },
   {
     name: 'V2+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1626,8 +1530,6 @@ const algInfo = [
   },
   {
     name: 'V2-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1659,8 +1561,6 @@ const algInfo = [
   },
   {
     name: 'V3+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1692,8 +1592,6 @@ const algInfo = [
   },
   {
     name: 'V3-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1725,8 +1623,6 @@ const algInfo = [
   },
   {
     name: 'V4+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1758,8 +1654,6 @@ const algInfo = [
   },
   {
     name: 'V4-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1791,8 +1685,6 @@ const algInfo = [
   },
   {
     name: 'W',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1824,8 +1716,6 @@ const algInfo = [
   },
   {
     name: 'Y1+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1857,8 +1747,6 @@ const algInfo = [
   },
   {
     name: 'Y1-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1888,15 +1776,9 @@ const algInfo = [
       5,
     ],
   },
-  {
-    name: 'Y2+',
-    a: '',
-    a2: '',
-  },
+  { name: 'Y2+' },
   {
     name: 'Y2-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1928,8 +1810,6 @@ const algInfo = [
   },
   {
     name: 'Y3+',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1961,8 +1841,6 @@ const algInfo = [
   },
   {
     name: 'Y3-',
-    a: '',
-    a2: '',
     state: [
       0,
       0,
@@ -1993,5 +1871,4 @@ const algInfo = [
     ],
   },
 ];
-
 export { algGroup, algInfo };

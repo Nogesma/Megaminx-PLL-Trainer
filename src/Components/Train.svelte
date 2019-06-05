@@ -6,6 +6,7 @@
   import Timer from './Timer.svelte';
   import { algGroup, algInfo } from '../scripts/algsinfo';
   import { megaPllMap } from '../scripts/algsmap';
+
   const dispatch = createEventDispatcher();
   const changeMode = event =>
     dispatch('viewUpdate', {
