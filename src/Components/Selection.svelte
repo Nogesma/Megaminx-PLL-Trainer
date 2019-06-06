@@ -99,7 +99,7 @@
     <th colspan="8" on:click={() => selectGroup(i)}>{name}</th>
     <tr />
     {#each cases as index}
-      {#if R.includes(index, [8, 23, 34, 42, 53])}
+      {#if R.includes(index, [8, 23, 34, 42, 53, 68, 76])}
         <tr />
       {/if}
       <td
