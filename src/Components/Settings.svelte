@@ -7,12 +7,20 @@
 {#each value as val, i}
   {#if names[i] === 'Color Scheme'}
     {#each [val] as { U, R, F, L, Bl, Br }}
+      U:
       <input bind:value={U} />
-      <input bind:value={R} />
+      F:
       <input bind:value={F} />
+      <br />
+      R:
+      <input bind:value={R} />
+      L:
       <input bind:value={L} />
-      <input bind:value={Bl} />
+      <br />
+      Br:
       <input bind:value={Br} />
+      Bl:
+      <input bind:value={Bl} />
     {/each}
   {:else}
     <p>
@@ -20,8 +28,4 @@
       <input type="number" min="0" bind:value={val} />
     </p>
   {/if}
-{/each}
-
-{#each value as val, i}
-  <p>{names[i]}: {val}</p>
 {/each}

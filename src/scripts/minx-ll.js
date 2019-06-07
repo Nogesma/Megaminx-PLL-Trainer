@@ -1,10 +1,10 @@
 import * as R from 'ramda';
 
-const drawMegaminxLL = (colorScheme, state) => {
+const drawMegaminxLL = (colorScheme, state, size) => {
   const color = getColor(colorScheme);
   const coloredState = R.map(color, state);
 
-  return formatString(coloredState);
+  return formatString(coloredState, size);
 };
 
 const getColor = ({ U, R: Right, F, L, Bl, Br }) =>
@@ -17,10 +17,10 @@ const getColor = ({ U, R: Right, F, L, Bl, Br }) =>
     [R.T, R.always(L)],
   ]);
 
-const formatString = list =>
+const formatString = (list, size) =>
   R.reduce(
     R.flip(R.replace('{}')),
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100" height="100">
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="${size}" height="${size}">
   <g stroke-linejoin="round">
     <polygon
       points="80.2229123600034,132.367048291092 68,94.7487921443737 100,71.4994312482022 132,94.7487921443737 119.777087639997,132.367048291092"

@@ -149,16 +149,16 @@
 
   .main {
     background-color: white;
-    top: -1px;
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
+    top: 0;
+    width: 100%;
     padding: 10px;
     font-size: 200%;
     font-weight: bold;
     user-select: none;
     -webkit-user-select: none;
-    width: auto;
     overflow: auto;
+    height: 50px;
   }
 
   .title {
@@ -167,7 +167,7 @@
 
   .mode {
     float: right;
-    padding-left: 10px;
+    padding-right: 10px;
   }
 </style>
 

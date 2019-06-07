@@ -1,3 +1,4 @@
+//TODO: Fix E2
 const algGroup = [
   {
     name: 'CPLL',

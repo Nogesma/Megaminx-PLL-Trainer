@@ -86,6 +86,10 @@
 <style>
   div {
     text-align: center;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   .red {

@@ -19,7 +19,8 @@
       selectedCases,
     });
 
-  const getImage = (cs, state) => drawMegaminxLL(cs, state || R.repeat(0, 27));
+  const getImage = (cs, state) =>
+    drawMegaminxLL(cs, state || R.repeat(0, 27), 100);
 
   const selectAllNone = () =>
     R.equals(0, R.length(selectedCases))
@@ -49,6 +50,7 @@
   }
   table {
     width: 100%;
+    margin-top: 50px;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;

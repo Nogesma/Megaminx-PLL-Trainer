@@ -6,6 +6,7 @@
   import Timer from './Timer.svelte';
   import { algGroup, algInfo } from '../scripts/algsinfo';
   import { megaPllMap } from '../scripts/algsmap';
+  import { drawMegaminxLL } from '../scripts/minx-ll';
 
   const dispatch = createEventDispatcher();
   const changeMode = event =>
@@ -18,6 +19,10 @@
   export let value;
 
   $: scrambleSize = R.nth(1, value) || 30;
+  $: colorScheme = R.nth(2, value);
+
+  const getImage = (cs, state) =>
+    drawMegaminxLL(cs, state || R.repeat(0, 27), 80);
 
   let currentCase;
   let times = [];
@@ -82,34 +87,55 @@
     font-size: 50px;
     text-align: center;
   }
+  .mn {
+    margin-top: 50px;
+  }
+
+  .last-case {
+    border: black 1px solid;
+  }
 </style>
 
 <Header train={false} selection={true} on:viewUpdate={changeMode} bind:value />
 
-<div class="scramble" style="font-size:{scrambleSize}px">{scramble}</div>
-<div>{caseName}</div>
+<div class="mn">
+  <div class="scramble" style="font-size:{scrambleSize}px">{scramble}</div>
 
-<Timer
-  on:newTime={event => {
-    times = updateTimesArray(R.path(['detail', 'time'], event));
-    [scramble, caseName] = getScrambleCase();
-  }}
-  bind:value />
+  <Timer
+    on:newTime={event => {
+      times = updateTimesArray(R.path(['detail', 'time'], event));
+      [scramble, caseName] = getScrambleCase();
+    }}
+    bind:value />
 
-<div>Selected Cases : {R.length(selectedCases)}</div>
-{#each selectedCases as caseIndex}
-  <div>{R.path([caseIndex, 'name'], algInfo)}</div>
-{/each}
-{#if R.length(times)}
-  <div on:click={removeCase}>
-    Unselect last case : ({R.path([0, 'caseName'], times)})
-  </div>
-{/if}
-<table>
-  {#each times as time}
-    <td>{R.path(['time'], time)}</td>
-    <td>{R.path(['scramble'], time)}</td>
-    <td>{R.path(['caseName'], time)}</td>
-    <tr />
+  <div>Selected Cases : {R.length(selectedCases)}</div>
+  {#each selectedCases as caseIndex}
+    <div>{R.path([caseIndex, 'name'], algInfo)}</div>
   {/each}
-</table>
+  {#if R.length(times)}
+    <div on:click={removeCase}>
+      Unselect last case : ({R.path([0, 'caseName'], times)})
+    </div>
+  {/if}
+  <br />
+  <br />
+  <br />
+  {#if R.length(times)}
+    <div class="last-case">
+      <h4>Last case:</h4>
+      <div>{R.path([0, 'caseName'], times)}: {R.path([0, 'time'], times)}</div>
+      <div>{R.path([0, 'scramble'], times)}</div>
+      <div>
+        {@html getImage(colorScheme, R.path([R.path([0, 'caseIndex'], times), 'state'], algInfo))}
+      </div>
+    </div>
+  {/if}
+  <br />
+  <br />
+  <div class="times">
+    {#each times as time}
+      {R.path(['caseName'], time)}: {R.path(['time'], time)}
+      <br />
+    {/each}
+  </div>
+</div>
