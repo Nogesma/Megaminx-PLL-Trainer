@@ -21,15 +21,17 @@
   },
   "pre-commit": [
     "build",
+    "add",
     "code-style"
   ],
   "scripts": {
     "build": "rollup -c",
+    "add": "git add .",
     "autobuild": "rollup -c -w",
     "dev": "run-p start:dev autobuild",
     "start": "sirv docs",
     "start:dev": "sirv docs --dev",
-    "code-style": "prettier --check src/**/**.js src/**/**.svelte --plugin-search-dir=. ./**/*.html"
+    "code-style": "prettier --check src/**/** --plugin-search-dir=. ./**/*.html"
   },
   "prettier": {
     "bracketSpacing": true,

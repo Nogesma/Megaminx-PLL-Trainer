@@ -11,12 +11,20 @@
   export let selectedCases;
   export let value;
 
-  $: colorScheme = R.nth(2, value);
+  $: colorScheme = R.mergeWith(R.or, R.nth(2, value), {
+    U: 'Black',
+    R: 'Grey',
+    F: 'Yellow',
+    L: 'Orange',
+    Bl: 'LightBlue',
+    Br: 'Green',
+  });
 
-  const changeMode = event =>
+  const changeMode = (event, unload = false) =>
     dispatch('viewUpdate', {
+      unload,
       mode: R.path(['detail', 'mode'], event),
-      selectedCases,
+      selectedCases: selectedCases,
     });
 
   const getImage = (cs, state) =>
@@ -84,6 +92,8 @@
     border: 1px solid lightgrey;
   }
 </style>
+
+<svelte:window on:unload={() => changeMode({ detail: { mode: 0 } }, true)} />
 
 <Header
   train={R.length(selectedCases)}

@@ -9,17 +9,25 @@
   import { drawMegaminxLL } from '../scripts/minx-ll';
 
   const dispatch = createEventDispatcher();
-  const changeMode = event =>
+  const changeMode = (event, unload = false) =>
     dispatch('viewUpdate', {
+      unload,
       mode: R.path(['detail', 'mode'], event),
-      selectedCases: selectedCases || [],
+      selectedCases: selectedCases,
     });
 
   export let selectedCases;
   export let value;
 
   $: scrambleSize = R.nth(1, value) || 30;
-  $: colorScheme = R.nth(2, value);
+  $: colorScheme = R.mergeWith(R.or, R.nth(2, value), {
+    U: 'Black',
+    R: 'Grey',
+    F: 'Yellow',
+    L: 'Orange',
+    Bl: 'LightBlue',
+    Br: 'Green',
+  });
 
   const getImage = (cs, state) =>
     drawMegaminxLL(cs, state || R.repeat(0, 27), 80);
@@ -35,33 +43,31 @@
       {
         time,
         scramble,
-        caseName,
+        caseName: R.path([currentCase, 'name'], algInfo),
         caseIndex: currentCase,
       },
       times
     );
 
-  const getScrambleCase = () => [
+  const getScramble = () =>
     R.join(' ', [
       randomItem(auf),
       randomItem(
         R.path([(currentCase = randomItem(selectedCases))], megaPllMap)
       ),
       randomItem(auf),
-    ]),
-    R.path([currentCase, 'name'], algInfo),
-  ];
+    ]);
 
   const removeCase = () => {
     selectedCases = R.without([R.path([0, 'caseIndex'], times)], selectedCases);
     if (R.equals(0, R.length(selectedCases))) {
       changeMode({ detail: { mode: 0 } });
     } else {
-      [scramble, caseName] = getScrambleCase();
+      scramble = getScramble();
     }
   };
 
-  let [scramble, caseName] = getScrambleCase();
+  let scramble = getScramble();
 </script>
 
 <style>
@@ -84,7 +90,6 @@
     text-align: center;
   }
   .timer {
-    font-size: 50px;
     text-align: center;
   }
   .mn {
@@ -96,6 +101,8 @@
   }
 </style>
 
+<svelte:window on:unload={() => changeMode({ detail: { mode: 0 } }, true)} />
+
 <Header train={false} selection={true} on:viewUpdate={changeMode} bind:value />
 
 <div class="mn">
@@ -104,7 +111,7 @@
   <Timer
     on:newTime={event => {
       times = updateTimesArray(R.path(['detail', 'time'], event));
-      [scramble, caseName] = getScrambleCase();
+      scramble = getScramble();
     }}
     bind:value />
 
