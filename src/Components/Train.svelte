@@ -9,12 +9,13 @@
   import { drawMegaminxLL } from '../scripts/minx-ll';
 
   const dispatch = createEventDispatcher();
-  const changeMode = (event, unload = false) =>
+  const changeMode = event => {
+    localStorage.times = JSON.stringify(times);
     dispatch('viewUpdate', {
-      unload,
       mode: R.path(['detail', 'mode'], event),
       selectedCases: selectedCases,
     });
+  };
 
   export let selectedCases;
   export let value;
@@ -33,7 +34,7 @@
     drawMegaminxLL(cs, state || R.repeat(0, 27), 80);
 
   let currentCase;
-  let times = [];
+  let times = JSON.parse(localStorage.getItem('times') || null) || [];
   const auf = ['', 'U', 'U2', "U'", "U2'"];
   const randomItem = array =>
     R.path([Math.floor(Math.random() * array.length)], array);

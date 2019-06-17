@@ -13,5 +13,5 @@ cd Website_Temp
 
 y # yarn
 
-yr dev # yarn run dev
+yrun dev # yarn run dev
 ````

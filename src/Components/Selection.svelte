@@ -20,9 +20,8 @@
     Br: 'Green',
   });
 
-  const changeMode = (event, unload = false) =>
+  const changeMode = event =>
     dispatch('viewUpdate', {
-      unload,
       mode: R.path(['detail', 'mode'], event),
       selectedCases: selectedCases,
     });
@@ -93,7 +92,7 @@
   }
 </style>
 
-<svelte:window on:unload={() => changeMode({ detail: { mode: 0 } }, true)} />
+<svelte:window on:unload={() => changeMode({ detail: { mode: 0 } })} />
 
 <Header
   train={R.length(selectedCases)}

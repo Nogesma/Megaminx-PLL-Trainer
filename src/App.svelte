@@ -14,9 +14,7 @@
     viewMode = R.path(['detail', 'mode'], e);
     selectedCases = R.path(['detail', 'selectedCases'], e);
 
-    if (R.path(['detail', 'unload'])) {
-      saveItems();
-    }
+    saveItems();
   };
 
   const mode = [Selection, Train];
@@ -43,6 +41,5 @@
 <svelte:component
   this={mode[viewMode]}
   on:viewUpdate={handleView}
-  on:win
   {selectedCases}
   bind:value />
