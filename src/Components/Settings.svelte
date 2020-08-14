@@ -15,7 +15,7 @@
   ];
   const names = ['Timer size', 'Scramble size', 'Color Scheme'];
 
-  const reset = i => (value[i] = defaultValue[i]);
+  const reset = (i) => (value[i] = defaultValue[i]);
 </script>
 
 <style>

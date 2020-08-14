@@ -10,7 +10,7 @@
     localStorage.selectedCases = JSON.stringify(selectedCases);
   };
 
-  const handleView = e => {
+  const handleView = (e) => {
     viewMode = R.path(['detail', 'mode'], e);
     selectedCases = R.path(['detail', 'selectedCases'], e);
 

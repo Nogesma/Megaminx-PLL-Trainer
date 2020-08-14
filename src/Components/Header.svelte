@@ -21,7 +21,7 @@
 
   const dispatch = createEventDispatcher();
 
-  const changeMode = mode => dispatch('viewUpdate', { mode });
+  const changeMode = (mode) => dispatch('viewUpdate', { mode });
 
   const handleKeyup = ({ key }) => {
     if (settingsOpen && key === 'Escape') {
@@ -188,7 +188,7 @@
     <div
       class="bg"
       bind:this={background}
-      on:click={event => (event.target === background || event.target === wrap ? (settingsOpen = false) : '')}>
+      on:click={(event) => (event.target === background || event.target === wrap ? (settingsOpen = false) : '')}>
       <div class="window-wrap" bind:this={wrap}>
         <div class="window">
           {#if false}

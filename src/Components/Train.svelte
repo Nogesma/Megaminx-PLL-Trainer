@@ -4,12 +4,11 @@
 
   import Header from './Header.svelte';
   import Timer from './Timer.svelte';
-  import { algGroup, algInfo } from '../scripts/algsinfo';
-  import { megaPllMap } from '../scripts/algsmap';
+  import { algs } from '../scripts/algsmap';
   import { drawMegaminxLL } from '../scripts/minx-ll';
 
   const dispatch = createEventDispatcher();
-  const changeMode = event => {
+  const changeMode = (event) => {
     localStorage.times = JSON.stringify(times);
     dispatch('viewUpdate', {
       mode: R.path(['detail', 'mode'], event),
@@ -36,15 +35,15 @@
   let currentCase;
   let times = JSON.parse(localStorage.getItem('times') || null) || [];
   const auf = ['', 'U', 'U2', "U'", "U2'"];
-  const randomItem = array =>
+  const randomItem = (array) =>
     R.path([Math.floor(Math.random() * array.length)], array);
 
-  const updateTimesArray = time =>
+  const updateTimesArray = (time) =>
     R.prepend(
       {
         time,
         scramble,
-        caseName: R.path([currentCase, 'name'], algInfo),
+        caseName: R.path([currentCase, 'name'], algs),
         caseIndex: currentCase,
       },
       times
@@ -54,7 +53,7 @@
     R.join(' ', [
       randomItem(auf),
       randomItem(
-        R.path([(currentCase = randomItem(selectedCases))], megaPllMap)
+        R.path([(currentCase = randomItem(selectedCases)), 'scr'], algs)
       ),
       randomItem(auf),
     ]);
@@ -110,7 +109,7 @@
   <div class="scramble" style="font-size:{scrambleSize}px">{scramble}</div>
 
   <Timer
-    on:newTime={event => {
+    on:newTime={(event) => {
       times = updateTimesArray(R.path(['detail', 'time'], event));
       scramble = getScramble();
     }}
@@ -118,7 +117,7 @@
 
   <div>Selected Cases : {R.length(selectedCases)}</div>
   {#each selectedCases as caseIndex}
-    <div>{R.path([caseIndex, 'name'], algInfo)}</div>
+    <div>{R.path([caseIndex, 'name'], algs)}</div>
   {/each}
   {#if R.length(times)}
     <div on:click={removeCase}>
@@ -134,7 +133,7 @@
       <div>{R.path([0, 'caseName'], times)}: {R.path([0, 'time'], times)}</div>
       <div>{R.path([0, 'scramble'], times)}</div>
       <div>
-        {@html getImage(colorScheme, R.path([R.path([0, 'caseIndex'], times), 'state'], algInfo))}
+        {@html getImage(colorScheme, R.path([R.path([0, 'caseIndex'], times), 'state'], algs))}
       </div>
     </div>
   {/if}

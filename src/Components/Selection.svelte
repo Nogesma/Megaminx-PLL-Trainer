@@ -4,7 +4,7 @@
   import { createEventDispatcher } from 'svelte';
 
   import Header from './Header.svelte';
-  import { algGroup, algInfo } from '../scripts/algsinfo';
+  import { algs } from '../scripts/algsmap';
 
   const dispatch = createEventDispatcher();
 
@@ -20,7 +20,7 @@
     Br: 'Green',
   });
 
-  const changeMode = event =>
+  const changeMode = (event) =>
     dispatch('viewUpdate', {
       mode: R.path(['detail', 'mode'], event),
       selectedCases: selectedCases,
@@ -31,10 +31,10 @@
 
   const selectAllNone = () =>
     R.equals(0, R.length(selectedCases))
-      ? (selectedCases = R.range(0, R.length(algInfo)))
+      ? (selectedCases = R.range(0, R.length(algs)))
       : (selectedCases = []);
 
-  const selectGroup = i => {
+  const selectGroup = (i) => {
     const groupCases = R.path([i, 'cases'], algGroup);
 
     if (R.equals(R.difference(selectedCases, groupCases), selectedCases)) {
@@ -44,17 +44,13 @@
     }
   };
 
-  const select = i =>
+  const select = (i) =>
     R.includes(i, selectedCases)
       ? (selectedCases = R.without([i], selectedCases))
       : (selectedCases = R.append(i, selectedCases));
 </script>
 
 <style>
-  div {
-    width: 100%;
-    text-align: center;
-  }
   table {
     width: 100%;
     margin-top: 50px;
@@ -81,9 +77,6 @@
     border-spacing: 100px;
     text-align: center;
   }
-  img {
-    width: 70%;
-  }
   .selected {
     border: 1px solid black;
   }
@@ -101,25 +94,24 @@
   bind:value />
 
 <table>
-  <th colspan="8" on:click={selectAllNone}>
-    All Cases: {R.length(algInfo)}, Selected: {R.length(selectedCases)}
+  <th colspan="10" on:click={selectAllNone}>
+    All Cases: {R.length(algs)}, Selected: {R.length(selectedCases)}
   </th>
 
-  {#each algGroup as { name, cases }, i}
-    <tr />
-    <th colspan="8" on:click={() => selectGroup(i)}>{name}</th>
-    <tr />
-    {#each cases as index}
-      {#if R.includes(index, [8, 23, 34, 42, 53, 68, 76])}
-        <tr />
-      {/if}
-      <td
-        class={R.includes(index, selectedCases) ? 'selected' : 'notSelected'}
-        on:click={() => select(index)}>
-        {@html getImage(colorScheme, R.path([index, 'state'], algInfo))}
-        <br />
-        {R.path([index, 'name'], algInfo)}
-      </td>
-    {/each}
+  {#each algs as { name, state }, index}
+    {#if index == 0 || R.head(name) != R.head(R.path([index - 1, 'name'], algs))}
+      <tr />
+      <th colspan="10" on:click={() => selectGroup(R.head(name))}>
+        {R.head(name)}
+      </th>
+      <tr />
+    {/if}
+    <td
+      class={R.includes(index, selectedCases) ? 'selected' : 'notSelected'}
+      on:click={() => select(index)}>
+      {@html getImage(colorScheme, state)}
+      <br />
+      {name}
+    </td>
   {/each}
 </table>

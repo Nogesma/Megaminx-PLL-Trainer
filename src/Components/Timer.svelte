@@ -20,7 +20,7 @@
   let timerText = 'Ready';
   let waiting = false;
 
-  const msToTime = t => {
+  const msToTime = (t) => {
     const time = Number(t);
 
     const min = Math.floor(time / (60 * 1000));
@@ -61,7 +61,7 @@
     red = false;
   };
 
-  const down = event => {
+  const down = (event) => {
     if (!allowed) {
       return;
     }
@@ -73,7 +73,7 @@
     allowed = false;
   };
 
-  const up = event => {
+  const up = (event) => {
     if (!running && !waiting && event.code === 'Space') {
       startTimer();
     } else {
