@@ -35,7 +35,11 @@
       : (selectedCases = []);
 
   const selectGroup = (i) => {
-    const groupCases = R.path([i, 'cases'], algGroup);
+    const type = R.head(algs[i].name);
+    let groupCases = [i];
+    while (type === R.head(algs[++i].name)) {
+      groupCases.push(i);
+    }
 
     if (R.equals(R.difference(selectedCases, groupCases), selectedCases)) {
       selectedCases = R.concat(groupCases, selectedCases);
@@ -99,11 +103,9 @@
   </th>
 
   {#each algs as { name, state }, index}
-    {#if index == 0 || R.head(name) != R.head(R.path([index - 1, 'name'], algs))}
+    {#if index === 0 || R.head(name) !== R.head(R.path([index - 1, 'name'], algs))}
       <tr />
-      <th colspan="10" on:click={() => selectGroup(R.head(name))}>
-        {R.head(name)}
-      </th>
+      <th colspan="10" on:click={() => selectGroup(index)}>{R.head(name)}</th>
       <tr />
     {/if}
     <td
