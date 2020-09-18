@@ -239,7 +239,7 @@ module.exports.algs = [
   }, //B
   {
     name: 'B1-',
-    'B1-': [
+    scr: [
       "R2 U2' R2' U R2 U R2' U2' R2 U2 R2' U2 R2 U R2'",
       "R2 U2' R2' U R2 U' R2' U2 R2 U2' R2' U' R2 U R2'",
       "R2 U' R2' U R2 U2 R2' U2' R2 U R2' U' R2 U2 R2'",
@@ -264,7 +264,7 @@ module.exports.algs = [
   },
   {
     name: 'B2+',
-    'B2+': [
+    scr: [
       "R U' R' U2 R2 U R2' U' R2 U2 R2' U R U R U2' R2'",
       "R U' R' U2' R2 U R' U R U' R' U2 R' U2' R2 U' R2'",
       "R2' U' R2' U2' R2' U2 R' U R2' U2' R2' U R2 U' R2' U' R",
@@ -289,7 +289,7 @@ module.exports.algs = [
   },
   {
     name: 'B2-',
-    'B2-': [
+    scr: [
       "R2 U R2 U2 R2 U2' R U' R2 U2 R2 U' R2' U R2 U R'",
       "R' U R U2 R2' U' R U' R' U R U2' R U2 R2' U R2",
       "R' U R U2' R2' U' R2 U R2' U2' R2 U' R' U' R' U2 R2",
