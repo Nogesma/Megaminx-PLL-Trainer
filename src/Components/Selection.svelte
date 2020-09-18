@@ -57,7 +57,6 @@
 <style>
   table {
     width: 100%;
-    margin-top: 50px;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -87,6 +86,10 @@
   .notSelected {
     border: 1px solid lightgrey;
   }
+
+  p {
+    margin-top: 50px;
+  }
 </style>
 
 <svelte:window on:unload={() => changeMode({ detail: { mode: 0 } })} />
@@ -97,6 +100,11 @@
   on:viewUpdate={changeMode}
   bind:value />
 
+<p>
+  The site is still in development. Everything should be functional, the UI is
+  still being worked on. If you have any questions, notice any breaking bug,
+  please contact me on discord: Mano#5911
+</p>
 <table>
   <th colspan="10" on:click={selectAllNone}>
     All Cases: {R.length(algs)}, Selected: {R.length(selectedCases)}

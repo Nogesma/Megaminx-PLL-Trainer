@@ -7,13 +7,6 @@
   export let selection;
   export let value;
 
-  export let closeButton = true;
-  export let closeOnEsc = true;
-  export let closeOnOuterClick = true;
-  export let styleBg = {};
-  export let styleWindow = {};
-  export let styleContent = {};
-
   let background;
   let wrap;
 
