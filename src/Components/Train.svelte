@@ -6,10 +6,10 @@
   import Timer from './Timer.svelte';
   import { algGroup, algInfo } from '../scripts/algsinfo';
   import { megaPllMap } from '../scripts/algsmap';
-  import { drawMegaminxLL } from '../scripts/minx-ll';
+  import CubePreview from 'cube-preview';
 
   const dispatch = createEventDispatcher();
-  const changeMode = event => {
+  const changeMode = (event) => {
     localStorage.times = JSON.stringify(times);
     dispatch('viewUpdate', {
       mode: R.path(['detail', 'mode'], event),
@@ -31,15 +31,18 @@
   });
 
   const getImage = (cs, state) =>
-    drawMegaminxLL(cs, state || R.repeat(0, 27), 80);
+    new CubePreview()
+      .setType('minx')
+      .setColorScheme(cs)
+      .svgString(state || R.repeat(0, 27), 100);
 
   let currentCase;
   let times = JSON.parse(localStorage.getItem('times') || null) || [];
   const auf = ['', 'U', 'U2', "U'", "U2'"];
-  const randomItem = array =>
+  const randomItem = (array) =>
     R.path([Math.floor(Math.random() * array.length)], array);
 
-  const updateTimesArray = time =>
+  const updateTimesArray = (time) =>
     R.prepend(
       {
         time,
@@ -110,7 +113,7 @@
   <div class="scramble" style="font-size:{scrambleSize}px">{scramble}</div>
 
   <Timer
-    on:newTime={event => {
+    on:newTime={(event) => {
       times = updateTimesArray(R.path(['detail', 'time'], event));
       scramble = getScramble();
     }}

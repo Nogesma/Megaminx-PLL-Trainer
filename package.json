@@ -3,42 +3,32 @@
   "version": "1.0.0",
   "license": "MIT",
   "devDependencies": {
-    "dayjs": "^1.8.14",
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "cube-preview": "^0.4.3",
+    "dayjs": "^1.8.26",
+    "husky": "^4.2.5",
     "npm-run-all": "^4.1.5",
-    "pre-commit": "^1.2.2",
-    "prettier": "^1.17.0",
-    "prettier-plugin-svelte": "0.6.0",
-    "ramda": "^0.26.1",
-    "rollup": "^1.14.2",
-    "rollup-plugin-commonjs": "^10.0.0",
+    "prettier": "^2.0.5",
+    "prettier-plugin-svelte": "^1.1.0",
+    "ramda": "^0.27.0",
+    "rollup": "^2.8.2",
+    "rollup-plugin-analyzer": "^3.2.2",
+    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.0.3",
-    "rollup-plugin-svelte": "^5.0.3",
-    "rollup-plugin-terser": "5.0.0",
-    "sanctuary-maybe": "^1.2.0",
-    "sirv-cli": "^0.4.0",
-    "svelte": "3.5.1"
+    "rollup-plugin-progress": "^1.1.1",
+    "rollup-plugin-svelte": "^5.2.1",
+    "rollup-plugin-terser": "^5.3.0",
+    "sanctuary-maybe": "^2.1.0",
+    "sirv-cli": "^0.4.5",
+    "svelte": "^3.22.2"
   },
-  "pre-commit": [
-    "build",
-    "add",
-    "code-style"
-  ],
   "scripts": {
     "build": "rollup -c",
-    "add": "git add .",
     "autobuild": "rollup -c -w",
     "dev": "run-p start:dev autobuild localhost",
     "localhost": "sleep 0.1 && open http://localhost:5000",
     "start": "sirv docs",
     "start:dev": "sirv docs --dev",
-    "code-style": "prettier --check src/**/** --plugin-search-dir=. ./**/*.html"
-  },
-  "prettier": {
-    "bracketSpacing": true,
-    "singleQuote": true,
-    "endOfLine": "lf",
-    "trailingComma": "es5",
-    "useTabs": false
+    "test": "prettier --check src/**/** --plugin-search-dir=. ./**/*.html"
   }
 }

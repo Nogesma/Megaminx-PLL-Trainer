@@ -1,5 +1,5 @@
 <script>
-  import { drawMegaminxLL } from '../scripts/minx-ll';
+  import CubePreview from 'cube-preview';
   import * as R from 'ramda';
   import { createEventDispatcher } from 'svelte';
 
@@ -20,21 +20,24 @@
     Br: 'Green',
   });
 
-  const changeMode = event =>
+  const changeMode = (event) =>
     dispatch('viewUpdate', {
       mode: R.path(['detail', 'mode'], event),
       selectedCases: selectedCases,
     });
 
   const getImage = (cs, state) =>
-    drawMegaminxLL(cs, state || R.repeat(0, 27), 100);
+    new CubePreview()
+      .setType('minx')
+      .setColorScheme(cs)
+      .svgString(state || R.repeat(0, 27), 100);
 
   const selectAllNone = () =>
     R.equals(0, R.length(selectedCases))
       ? (selectedCases = R.range(0, R.length(algInfo)))
       : (selectedCases = []);
 
-  const selectGroup = i => {
+  const selectGroup = (i) => {
     const groupCases = R.path([i, 'cases'], algGroup);
 
     if (R.equals(R.difference(selectedCases, groupCases), selectedCases)) {
@@ -44,7 +47,7 @@
     }
   };
 
-  const select = i =>
+  const select = (i) =>
     R.includes(i, selectedCases)
       ? (selectedCases = R.without([i], selectedCases))
       : (selectedCases = R.append(i, selectedCases));
@@ -69,11 +72,7 @@
     border-spacing: 100px;
     text-align: center;
   }
-  svg {
-    display: block;
-    max-height: 100%;
-    margin: auto;
-  }
+
   th {
     cursor: pointer;
     border: 1px solid black;
@@ -81,9 +80,7 @@
     border-spacing: 100px;
     text-align: center;
   }
-  img {
-    width: 70%;
-  }
+
   .selected {
     border: 1px solid black;
   }
