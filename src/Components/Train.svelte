@@ -1,11 +1,11 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import * as R from 'ramda';
+  import CubePreview from 'cube-preview';
 
   import Header from './Header.svelte';
   import Timer from './Timer.svelte';
   import { algs } from '../scripts/algsmap';
-  import { drawMegaminxLL } from '../scripts/minx-ll';
 
   const dispatch = createEventDispatcher();
   const changeMode = (event) => {
@@ -30,11 +30,15 @@
   });
 
   const getImage = (cs, state) =>
-    drawMegaminxLL(cs, state || R.repeat(0, 27), 80);
+    new CubePreview()
+      .setType('minx')
+      .setColorScheme(cs)
+      .svgString(state ?? R.repeat(0, 27));
 
   let currentCase;
   let times = JSON.parse(localStorage.getItem('times') || null) || [];
   const auf = ['', 'U', 'U2', "U'", "U2'"];
+
   const randomItem = (array) =>
     R.path([Math.floor(Math.random() * array.length)], array);
 
@@ -43,21 +47,25 @@
       {
         time,
         scramble,
-        caseName: R.path([currentCase, 'name'], algs),
+        caseName: R.path(
+          [currentCase[0], 'cases', currentCase[1], 'name'],
+          algs
+        ),
         caseIndex: currentCase,
       },
       times
     );
 
-  const getScramble = () =>
-    R.join(' ', [
+  const getScramble = () => {
+    currentCase = randomItem(selectedCases);
+    return R.join(' ', [
       randomItem(auf),
       randomItem(
-        R.path([(currentCase = randomItem(selectedCases)), 'scr'], algs)
+        R.path([currentCase[0], 'cases', currentCase[1], 'scr'], algs)
       ),
       randomItem(auf),
     ]);
-
+  };
   const removeCase = () => {
     selectedCases = R.without([R.path([0, 'caseIndex'], times)], selectedCases);
     if (R.equals(0, R.length(selectedCases))) {
@@ -99,6 +107,11 @@
   .last-case {
     border: black 1px solid;
   }
+
+  svg {
+    width: auto;
+    height: 10%;
+  }
 </style>
 
 <svelte:window on:unload={() => changeMode({ detail: { mode: 0 } }, true)} />
@@ -116,8 +129,8 @@
     bind:value />
 
   <div>Selected Cases : {R.length(selectedCases)}</div>
-  {#each selectedCases as caseIndex}
-    <div>{R.path([caseIndex, 'name'], algs)}</div>
+  {#each selectedCases as [i, j]}
+    <div>{R.path([i, 'cases', j, 'name'], algs)}</div>
   {/each}
   {#if R.length(times)}
     <div on:click={removeCase}>
@@ -132,16 +145,17 @@
       <h4>Last case:</h4>
       <div>{R.path([0, 'caseName'], times)}: {R.path([0, 'time'], times)}</div>
       <div>{R.path([0, 'scramble'], times)}</div>
-      <div>
-        {@html getImage(colorScheme, R.path([R.path([0, 'caseIndex'], times), 'state'], algs))}
-      </div>
+      <!--      <div>-->
+      <!--        {@html getImage(colorScheme, R.path([R.path([0, 'caseIndex'], times)[0], 'cases', R.path([0, 'caseIndex'], times)[1], 'state'], algs))}-->
+      <!--      </div>-->
     </div>
   {/if}
   <br />
   <br />
   <div class="times">
     {#each times as time}
-      {R.path(['caseName'], time)}: {R.path(['time'], time)}
+      {R.path(['caseName'], time)}:
+      {R.path(['time'], time)}
       <br />
     {/each}
   </div>
