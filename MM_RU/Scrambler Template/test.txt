@@ -1,0 +1,6 @@
+ScrambleAlg U1
+R U R' U'
+End
+
+RandomScramble U1
+End
