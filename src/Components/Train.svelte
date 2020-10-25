@@ -79,6 +79,14 @@
 </script>
 
 <style>
+  html,
+  body {
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
   .scramble {
     font-size: 40px;
     text-align: center;
@@ -111,6 +119,15 @@
   svg {
     width: auto;
     height: 10%;
+  }
+
+  .times {
+    border: 1px solid black;
+    border-radius: 5px;
+    border-spacing: 100px;
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 </style>
 
