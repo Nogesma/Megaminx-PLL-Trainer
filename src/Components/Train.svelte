@@ -121,7 +121,8 @@
     height: 10%;
   }
 
-  .times {
+  .times,
+  .cases {
     border: 1px solid black;
     border-radius: 5px;
     border-spacing: 100px;
@@ -146,9 +147,12 @@
     bind:value />
 
   <div>Selected Cases : {R.length(selectedCases)}</div>
-  {#each selectedCases as [i, j]}
-    <div>{R.path([i, 'cases', j, 'name'], algs)}</div>
-  {/each}
+  <div class="cases">
+    {#each selectedCases as [i, j]}
+      {R.path([i, 'cases', j, 'name'], algs)}
+      <br />
+    {/each}
+  </div>
   {#if R.length(times)}
     <div on:click={removeCase}>
       Unselect last case : ({R.path([0, 'caseName'], times)})
